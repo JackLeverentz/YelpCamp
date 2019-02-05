@@ -1,26 +1,21 @@
-var express        = require("express"),
-    app            = express(), 
-    bodyParser     = require("body-parser"),
-    mongoose       = require("mongoose"),
-    passport       = require("passport"),
-    methodOverride = require("method-override"),
-    flash          = require("connect-flash"),
-    LocalStrategy  = require("passport-local"),
-    Campground     = require("./models/campground"),
-    Comment        = require("./models/comment"),
-    User           = require("./models/user");
-    // seedDB        = require("./seeds");
-    
-var commentRoutes    = require("./routes/campgrounds"),
+var express          = require("express"),
+    app              = express(), 
+    bodyParser       = require("body-parser"),
+    mongoose         = require("mongoose"),
+    passport         = require("passport"),
+    methodOverride   = require("method-override"),
+    flash            = require("connect-flash"),
+    LocalStrategy    = require("passport-local"),
+    Campground       = require("./models/campground"),
+    Comment          = require("./models/comment"),
+    User             = require("./models/user"),
+    commentRoutes    = require("./routes/campgrounds"),
     campgroundRoutes = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
+    // seedDB        = require("./seeds");
     
-console.log();  
-// MongoDB (mlab) configuration
-// mongoose.connect("mongodb://jack:calhunts22@ds163745.mlab.com:63745/yelpcampjack", {useNewUrlParser: true});
- 
-// local MongoDB configuration
- mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true}); 
+// local MongoDB configuration 
+mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true});  
 
 // App configuration
 app.use(bodyParser.urlencoded({extended: true}));
@@ -28,7 +23,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
-// seedDB(); // seed the database
+// seedDB(); 
 
 // Passport Configuration
 app.use(require("express-session")({
@@ -51,11 +46,12 @@ app.use(function(req, res, next){
     next();
 });
 
+// Routes config
 app.use(campgroundRoutes)
 app.use(commentRoutes);
 app.use(indexRoutes);
 
-// Server listener
+// Local server listener 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("The YelpCamp server has started!");
 });
