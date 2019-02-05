@@ -15,12 +15,12 @@ var commentRoutes    = require("./routes/campgrounds"),
     campgroundRoutes = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
     
-    
+console.log();  
 // MongoDB (mlab) configuration
-mongoose.connect("mongodb://jack:calhunts22@ds163745.mlab.com:63745/yelpcampjack", {useNewUrlParser: true});
+// mongoose.connect("mongodb://jack:calhunts22@ds163745.mlab.com:63745/yelpcampjack", {useNewUrlParser: true});
  
 // local MongoDB configuration
-// mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true}); LOCAL CONNECTION
+ mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true}); 
 
 // App configuration
 app.use(bodyParser.urlencoded({extended: true}));
