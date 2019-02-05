@@ -4,7 +4,8 @@
   "description": "The first version of yelpcamp",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Jack Leverentz",
   "license": "ISC",
@@ -12,7 +13,6 @@
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "ejs": "^2.6.1",
-    "ejs-lint": "^0.3.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "method-override": "^3.0.0",
