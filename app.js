@@ -16,8 +16,13 @@ var commentRoutes    = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
     
     
+// MongoDB (mlab) configuration
+mongoose.connect("mongodb://jack:calhunts22@ds163745.mlab.com:63745/yelpcampjack", {useNewUrlParser: true});
+ 
+// local MongoDB configuration
+// mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true}); LOCAL CONNECTION
+
 // App configuration
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -37,6 +42,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+// Flash and global user configuation
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
