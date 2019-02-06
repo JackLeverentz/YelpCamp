@@ -32,13 +32,13 @@ router.post("/campgrounds/:id/comments", middleware.isLoggedIn, function(req, re
                 if(err){
                     console.log(err);
                 } else {
-                // add username and id to comment
-                comment.author.id = req.user._id;
-                comment.author.username = req.user.username;
-                //save comment
-                comment.save();
-                campground.comments.push(comment);
-                campground.save();
+                    // add username and id to comment
+                    comment.author.id = req.user._id;
+                    comment.author.username = req.user.username;
+                        //save comment
+                        comment.save();
+                        campground.comments.push(comment);
+                        campground.save();
                 // redirect to campground show page
                 res.redirect("/campgrounds/" + campground._id);
                 }
@@ -58,7 +58,7 @@ router.get("/campgrounds/:id/comments/:comment_id/edit", middleware.checkComment
     });
 });
 
-// UPDATE Comment
+// UPDATE Comment after user has made edits 
 router.put("/campgrounds/:id/comments/:comment_id", function(req, res){
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
         if(err){

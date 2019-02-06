@@ -64,7 +64,7 @@ router.get("/campgrounds/:id/edit", middleware.checkCampgroundOwnership, functio
     });
 });
 
-// UPDATE campground
+// UPDATE campground after user has made edits
 router.put("/campgrounds/:id", function(req, res){
     // find an update the correct campground
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampround){
